@@ -40,7 +40,8 @@ const Home = () => {
       </section>
 
       {/* Featured projects */}
-      <section data-testid="featured-projects" className="px-6 md:px-12 lg:px-20 pb-24 md:pb-36">
+      <div className="mx-6 md:mx-12 lg:mx-20 h-px bg-gradient-to-r from-transparent via-[#8e9499]/45 to-transparent" />
+      <section data-testid="featured-projects" className="px-6 md:px-12 lg:px-20 py-24 md:py-36">
         <div className="flex items-end justify-between mb-12">
           <div>
             <p className="text-xs uppercase tracking-[0.2em] text-[#6b6862] mb-3">Selected Work</p>
@@ -97,6 +98,7 @@ const Home = () => {
       </section>
 
       {/* CTA */}
+      <div className="mx-6 md:mx-12 lg:mx-20 h-px bg-gradient-to-r from-transparent via-[#8e9499]/45 to-transparent" />
       <section className="px-6 md:px-12 lg:px-20 py-24 md:py-36 text-center">
         <p className="text-xs uppercase tracking-[0.2em] text-[#6b6862] mb-6">Begin Your Project</p>
         <h2 className="font-display font-light text-4xl sm:text-5xl lg:text-6xl tracking-tight max-w-3xl mx-auto leading-tight">
