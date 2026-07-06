@@ -335,7 +335,7 @@ def _call_mistral(messages: List[dict]) -> str:
         MISTRAL_URL,
         headers={"Authorization": f"Bearer {MISTRAL_API_KEY}", "Content-Type": "application/json"},
         json={"model": MISTRAL_MODEL, "messages": messages, "temperature": 0.5, "max_tokens": 600},
-        timeout=45,
+        timeout=30,
     )
     resp.raise_for_status()
     return resp.json()["choices"][0]["message"]["content"].strip()
