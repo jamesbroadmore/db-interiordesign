@@ -43,7 +43,7 @@ const AdminDashboard = () => {
         </div>
         <div className="flex items-center gap-6">
           <span className="text-sm text-white/70 hidden sm:block">{user?.email}</span>
-          <button data-testid="admin-logout" onClick={doLogout} className="flex items-center gap-2 text-xs uppercase tracking-[0.15em] hover:text-[#b08d57]"><LogOut size={16} /> Logout</button>
+          <button data-testid="admin-logout" onClick={doLogout} className="flex items-center gap-2 text-xs uppercase tracking-[0.15em] hover:text-[#8e9499]"><LogOut size={16} /> Logout</button>
         </div>
       </header>
 
@@ -52,7 +52,7 @@ const AdminDashboard = () => {
           {[["bookings", `Bookings${newCount ? ` (${newCount} new)` : ""}`], ["projects", "Gallery & Projects"]].map(([k, l]) => (
             <button key={k} data-testid={`tab-${k}`} onClick={() => setTab(k)}
               className={`px-6 py-3 text-sm uppercase tracking-[0.12em] border-b-2 -mb-px transition-colors ${
-                tab === k ? "border-[#b08d57] text-[#14110d]" : "border-transparent text-[#6b6862] hover:text-[#14110d]"}`}>{l}</button>
+                tab === k ? "border-[#8e9499] text-[#14110d]" : "border-transparent text-[#6b6862] hover:text-[#14110d]"}`}>{l}</button>
           ))}
         </div>
 
@@ -68,7 +68,7 @@ const AdminDashboard = () => {
                     {b.phone && <div className="text-sm text-[#6b6862]">{b.phone}</div>}
                   </div>
                   <div className="md:col-span-5">
-                    {b.project_type && <div className="text-xs uppercase tracking-wide text-[#b08d57] mb-1">{b.project_type}</div>}
+                    {b.project_type && <div className="text-xs uppercase tracking-wide text-[#8e9499] mb-1">{b.project_type}</div>}
                     <p className="text-sm text-[#3a352d]">{b.message || "—"}</p>
                     <div className="text-xs text-[#999] mt-2">{new Date(b.created_at).toLocaleString()} · via {b.source === "kylie_chat" ? "Kylie" : "Contact form"}</div>
                   </div>
@@ -91,7 +91,7 @@ const AdminDashboard = () => {
         {tab === "projects" && (
           <div data-testid="projects-panel">
             <button data-testid="new-project-btn" onClick={() => setEditing(empty)}
-              className="flex items-center gap-2 bg-[#14110d] text-white px-6 py-3 text-xs uppercase tracking-[0.15em] hover:bg-[#b08d57] transition-colors mb-8"><Plus size={16} /> New Project</button>
+              className="flex items-center gap-2 bg-[#14110d] text-white px-6 py-3 text-xs uppercase tracking-[0.15em] hover:bg-[#8e9499] transition-colors mb-8"><Plus size={16} /> New Project</button>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {projects.map((p) => (
                 <div key={p.id} data-testid={`admin-project-${p.id}`} className="bg-white border border-[#14110d]/10">
@@ -101,7 +101,7 @@ const AdminDashboard = () => {
                   <div className="p-4">
                     <div className="flex items-center justify-between">
                       <h3 className="font-display text-xl">{p.title}</h3>
-                      {p.featured && <span className="text-[10px] uppercase tracking-wide bg-[#b08d57] text-white px-2 py-0.5">Featured</span>}
+                      {p.featured && <span className="text-[10px] uppercase tracking-wide bg-[#8e9499] text-white px-2 py-0.5">Featured</span>}
                     </div>
                     <p className="text-sm text-[#6b6862] mt-1">{p.category} · {p.images?.length || 0} images</p>
                     <div className="flex gap-2 mt-4">
@@ -186,10 +186,10 @@ const ProjectEditor = ({ project, onClose, onSaved }) => {
           <div>
             <label className="text-xs uppercase tracking-[0.15em] text-[#6b6862]">Description</label>
             <textarea data-testid="editor-description" rows={3} value={form.description} onChange={(e) => set("description", e.target.value)}
-              className="w-full mt-2 border border-[#14110d]/15 px-4 py-3 bg-white text-sm focus:outline-none focus:border-[#b08d57]" />
+              className="w-full mt-2 border border-[#14110d]/15 px-4 py-3 bg-white text-sm focus:outline-none focus:border-[#8e9499]" />
           </div>
           <label className="flex items-center gap-3 text-sm cursor-pointer">
-            <input data-testid="editor-featured" type="checkbox" checked={form.featured} onChange={(e) => set("featured", e.target.checked)} className="h-4 w-4 accent-[#b08d57]" />
+            <input data-testid="editor-featured" type="checkbox" checked={form.featured} onChange={(e) => set("featured", e.target.checked)} className="h-4 w-4 accent-[#8e9499]" />
             Show on homepage (Featured)
           </label>
 
@@ -197,14 +197,14 @@ const ProjectEditor = ({ project, onClose, onSaved }) => {
             <label className="text-xs uppercase tracking-[0.15em] text-[#6b6862]">Gallery Images</label>
             <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 mt-3">
               {form.images.map((img) => (
-                <div key={img.id} className={`relative group aspect-square ${form.cover_url === img.url ? "ring-2 ring-[#b08d57]" : ""}`}>
+                <div key={img.id} className={`relative group aspect-square ${form.cover_url === img.url ? "ring-2 ring-[#8e9499]" : ""}`}>
                   <img src={mediaUrl(img.url)} alt="" className="w-full h-full object-cover cursor-pointer" onClick={() => set("cover_url", img.url)} title="Set as cover" />
                   <button onClick={() => removeImage(img.id)} className="absolute top-1 right-1 bg-black/60 text-white p-1 opacity-0 group-hover:opacity-100 transition-opacity"><X size={14} /></button>
-                  {form.cover_url === img.url && <span className="absolute bottom-0 left-0 right-0 bg-[#b08d57] text-white text-[9px] text-center py-0.5 uppercase tracking-wide">Cover</span>}
+                  {form.cover_url === img.url && <span className="absolute bottom-0 left-0 right-0 bg-[#8e9499] text-white text-[9px] text-center py-0.5 uppercase tracking-wide">Cover</span>}
                 </div>
               ))}
               <button data-testid="editor-upload-btn" onClick={() => fileRef.current?.click()} disabled={uploading}
-                className="aspect-square border border-dashed border-[#14110d]/30 flex flex-col items-center justify-center gap-1 text-[#6b6862] hover:border-[#b08d57] hover:text-[#b08d57] transition-colors">
+                className="aspect-square border border-dashed border-[#14110d]/30 flex flex-col items-center justify-center gap-1 text-[#6b6862] hover:border-[#8e9499] hover:text-[#8e9499] transition-colors">
                 {uploading ? <span className="text-xs">Uploading…</span> : <><Upload size={20} /><span className="text-[10px] uppercase">Add</span></>}
               </button>
             </div>
@@ -213,7 +213,7 @@ const ProjectEditor = ({ project, onClose, onSaved }) => {
         </div>
         <div className="px-8 py-5 border-t border-[#14110d]/10 bg-white flex justify-end gap-3">
           <button onClick={onClose} className="px-6 py-3 border border-[#14110d]/20 text-xs uppercase tracking-[0.15em]">Cancel</button>
-          <button data-testid="editor-save" onClick={save} disabled={saving} className="px-8 py-3 bg-[#14110d] text-white text-xs uppercase tracking-[0.15em] hover:bg-[#b08d57] transition-colors disabled:opacity-60">
+          <button data-testid="editor-save" onClick={save} disabled={saving} className="px-8 py-3 bg-[#14110d] text-white text-xs uppercase tracking-[0.15em] hover:bg-[#8e9499] transition-colors disabled:opacity-60">
             {saving ? "Saving…" : "Save Project"}
           </button>
         </div>
@@ -226,7 +226,7 @@ const In = ({ label, v, on, testid }) => (
   <div>
     <label className="text-xs uppercase tracking-[0.15em] text-[#6b6862]">{label}</label>
     <input data-testid={testid} value={v || ""} onChange={(e) => on(e.target.value)}
-      className="w-full mt-2 border border-[#14110d]/15 px-4 py-3 bg-white text-sm focus:outline-none focus:border-[#b08d57]" />
+      className="w-full mt-2 border border-[#14110d]/15 px-4 py-3 bg-white text-sm focus:outline-none focus:border-[#8e9499]" />
   </div>
 );
 

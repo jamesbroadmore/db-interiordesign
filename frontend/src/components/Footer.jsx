@@ -11,7 +11,7 @@ export const Footer = () => (
         </p>
       </div>
       <div className="md:col-span-3">
-        <div className="text-xs uppercase tracking-[0.2em] text-[#b08d57] mb-5">Explore</div>
+        <div className="text-xs uppercase tracking-[0.2em] text-[#8e9499] mb-5">Explore</div>
         <ul className="space-y-3 font-body text-sm text-white/70">
           <li><Link to="/portfolio" className="hover:text-white transition-colors">Portfolio</Link></li>
           <li><Link to="/services" className="hover:text-white transition-colors">Services</Link></li>
@@ -20,7 +20,7 @@ export const Footer = () => (
         </ul>
       </div>
       <div className="md:col-span-4">
-        <div className="text-xs uppercase tracking-[0.2em] text-[#b08d57] mb-5">Studio</div>
+        <div className="text-xs uppercase tracking-[0.2em] text-[#8e9499] mb-5">Studio</div>
         <ul className="space-y-3 font-body text-sm text-white/70">
           <li className="flex items-center gap-3"><Mail size={16} /> hello@boyleinteriors.com</li>
           <li className="flex items-center gap-3"><Phone size={16} /> +61 2 8000 4000</li>

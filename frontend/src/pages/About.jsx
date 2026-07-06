@@ -34,7 +34,7 @@ const About = () => (
       <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[#14110d]/10 border border-[#14110d]/10">
         {values.map(([t, d]) => (
           <div key={t} className="bg-[#f7f2e9] p-10">
-            <h3 className="font-display text-3xl text-[#b08d57]">{t}</h3>
+            <h3 className="font-display text-3xl text-[#8e9499]">{t}</h3>
             <p className="font-body text-sm text-[#6b6862] mt-4 leading-relaxed">{d}</p>
           </div>
         ))}
@@ -52,7 +52,7 @@ const About = () => (
 
     <section className="mt-28 bg-[#14110d] text-white px-6 md:px-12 lg:px-20 py-24 text-center">
       <h2 className="font-display font-light text-3xl sm:text-4xl lg:text-5xl tracking-tight max-w-2xl mx-auto">Let's create something you'll love coming home to.</h2>
-      <Link to="/contact" className="inline-flex items-center gap-3 mt-10 bg-white text-[#14110d] px-10 py-5 text-xs uppercase tracking-[0.18em] hover:bg-[#b08d57] hover:text-white transition-colors">
+      <Link to="/contact" className="inline-flex items-center gap-3 mt-10 bg-white text-[#14110d] px-10 py-5 text-xs uppercase tracking-[0.18em] hover:bg-[#8e9499] hover:text-white transition-colors">
         Book a Consultation <ArrowUpRight size={16} />
       </Link>
     </section>

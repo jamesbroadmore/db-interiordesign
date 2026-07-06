@@ -46,7 +46,7 @@ const Services = () => (
       <div className="space-y-px bg-[#14110d]/10">
         {process.map(([n, t, d]) => (
           <div key={n} className="bg-[#f7f2e9] grid grid-cols-1 md:grid-cols-12 gap-4 py-8 items-baseline">
-            <span className="md:col-span-2 font-display text-4xl text-[#b08d57]">{n}</span>
+            <span className="md:col-span-2 font-display text-4xl text-[#8e9499]">{n}</span>
             <h3 className="md:col-span-4 font-display text-2xl">{t}</h3>
             <p className="md:col-span-6 font-body text-sm text-[#6b6862] leading-relaxed">{d}</p>
           </div>
@@ -62,12 +62,12 @@ const Services = () => (
           <div key={c.t} data-testid={`pricing-${c.t.toLowerCase().replace(/\s/g, "-")}`}
             className={`p-10 border ${c.featured ? "bg-[#14110d] text-white border-[#14110d]" : "bg-white border-[#14110d]/10"}`}>
             <h3 className="font-display text-2xl">{c.t}</h3>
-            <div className={`font-display text-3xl mt-4 ${c.featured ? "text-[#b08d57]" : "text-[#14110d]"}`}>{c.p}</div>
+            <div className={`font-display text-3xl mt-4 ${c.featured ? "text-[#8e9499]" : "text-[#14110d]"}`}>{c.p}</div>
             <p className={`text-sm mt-2 ${c.featured ? "text-white/60" : "text-[#6b6862]"}`}>{c.note}</p>
             <ul className="mt-6 space-y-3">
               {c.items.map((it) => (
                 <li key={it} className={`flex items-center gap-3 text-sm ${c.featured ? "text-white/80" : "text-[#6b6862]"}`}>
-                  <Check size={16} className="text-[#b08d57]" /> {it}
+                  <Check size={16} className="text-[#8e9499]" /> {it}
                 </li>
               ))}
             </ul>
@@ -79,7 +79,7 @@ const Services = () => (
 
     <section className="mt-28 bg-[#14110d] text-white px-6 md:px-12 lg:px-20 py-24 text-center">
       <h2 className="font-display font-light text-3xl sm:text-4xl lg:text-5xl tracking-tight max-w-2xl mx-auto">Ready to start? Kylie or our team can help.</h2>
-      <Link to="/contact" data-testid="services-page-cta" className="inline-flex items-center gap-3 mt-10 bg-white text-[#14110d] px-10 py-5 text-xs uppercase tracking-[0.18em] hover:bg-[#b08d57] hover:text-white transition-colors">
+      <Link to="/contact" data-testid="services-page-cta" className="inline-flex items-center gap-3 mt-10 bg-white text-[#14110d] px-10 py-5 text-xs uppercase tracking-[0.18em] hover:bg-[#8e9499] hover:text-white transition-colors">
         Book a Consultation <ArrowUpRight size={16} />
       </Link>
     </section>

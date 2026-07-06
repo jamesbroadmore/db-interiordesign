@@ -32,7 +32,7 @@ const Portfolio = () => {
             data-testid={`filter-${c.toLowerCase()}`}
             onClick={() => setFilter(c)}
             className={`px-6 py-2.5 text-xs uppercase tracking-[0.15em] border transition-colors ${
-              filter === c ? "bg-[#14110d] text-white border-[#14110d]" : "border-[#14110d]/20 text-[#14110d] hover:border-[#b08d57] hover:text-[#b08d57]"
+              filter === c ? "bg-[#14110d] text-white border-[#14110d]" : "border-[#14110d]/20 text-[#14110d] hover:border-[#8e9499] hover:text-[#8e9499]"
             }`}
           >
             {c}
@@ -54,7 +54,7 @@ const Portfolio = () => {
                   <h3 className="font-display text-2xl md:text-3xl">{p.title}</h3>
                   <p className="text-sm text-[#6b6862] mt-1">{p.category} · {p.location} · {p.year}</p>
                 </div>
-                <ArrowUpRight className="group-hover:text-[#b08d57] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" size={22} />
+                <ArrowUpRight className="group-hover:text-[#8e9499] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" size={22} />
               </div>
             </Link>
           </motion.div>

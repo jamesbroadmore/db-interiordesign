@@ -31,16 +31,16 @@ const Contact = () => {
           Tell us a little about your project and we'll be in touch to arrange your discovery consultation. Prefer to chat first? Kylie, our concierge, is here around the clock.
         </p>
         <div className="mt-12 space-y-5 font-body text-sm text-[#3a352d]">
-          <div className="flex items-center gap-4"><Mail size={18} className="text-[#b08d57]" /> hello@boyleinteriors.com</div>
-          <div className="flex items-center gap-4"><Phone size={18} className="text-[#b08d57]" /> +61 2 8000 4000</div>
-          <div className="flex items-center gap-4"><MapPin size={18} className="text-[#b08d57]" /> Sydney · Melbourne · By appointment</div>
+          <div className="flex items-center gap-4"><Mail size={18} className="text-[#8e9499]" /> hello@boyleinteriors.com</div>
+          <div className="flex items-center gap-4"><Phone size={18} className="text-[#8e9499]" /> +61 2 8000 4000</div>
+          <div className="flex items-center gap-4"><MapPin size={18} className="text-[#8e9499]" /> Sydney · Melbourne · By appointment</div>
         </div>
       </div>
 
       <div className="md:col-span-7">
         {sent ? (
           <div data-testid="booking-success" className="border border-[#14110d]/10 bg-white p-12 flex flex-col items-center text-center">
-            <div className="h-16 w-16 rounded-full bg-[#b08d57] flex items-center justify-center text-white mb-6"><Check size={30} /></div>
+            <div className="h-16 w-16 rounded-full bg-[#8e9499] flex items-center justify-center text-white mb-6"><Check size={30} /></div>
             <h3 className="font-display text-3xl">Request received</h3>
             <p className="font-body text-[#6b6862] mt-4 max-w-sm">Thank you for reaching out. Damien's studio will contact you shortly to arrange your consultation.</p>
           </div>
@@ -55,10 +55,10 @@ const Contact = () => {
             <div>
               <label className="text-xs uppercase tracking-[0.15em] text-[#6b6862]">Tell us about your project</label>
               <textarea data-testid="booking-message" rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })}
-                className="w-full mt-2 border border-[#14110d]/15 px-4 py-3 bg-[#f7f2e9] text-sm focus:outline-none focus:border-[#b08d57]" />
+                className="w-full mt-2 border border-[#14110d]/15 px-4 py-3 bg-[#f7f2e9] text-sm focus:outline-none focus:border-[#8e9499]" />
             </div>
             <button data-testid="booking-submit" disabled={loading}
-              className="w-full bg-[#14110d] text-white py-4 text-xs uppercase tracking-[0.18em] hover:bg-[#b08d57] transition-colors disabled:opacity-60">
+              className="w-full bg-[#14110d] text-white py-4 text-xs uppercase tracking-[0.18em] hover:bg-[#8e9499] transition-colors disabled:opacity-60">
               {loading ? "Sending…" : "Request Consultation"}
             </button>
           </form>
@@ -73,7 +73,7 @@ const Field = ({ label, value, onChange, type = "text", required, testid, placeh
     <label className="text-xs uppercase tracking-[0.15em] text-[#6b6862]">{label}{required && " *"}</label>
     <input data-testid={testid} type={type} required={required} value={value} placeholder={placeholder}
       onChange={(e) => onChange(e.target.value)}
-      className="w-full mt-2 border border-[#14110d]/15 px-4 py-3 bg-[#f7f2e9] text-sm focus:outline-none focus:border-[#b08d57]" />
+      className="w-full mt-2 border border-[#14110d]/15 px-4 py-3 bg-[#f7f2e9] text-sm focus:outline-none focus:border-[#8e9499]" />
   </div>
 );
 

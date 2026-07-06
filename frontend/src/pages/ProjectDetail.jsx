@@ -47,7 +47,7 @@ const ProjectDetail = () => {
 
       <section className="bg-[#14110d] text-white px-6 md:px-12 lg:px-20 py-24 text-center">
         <h2 className="font-display font-light text-3xl sm:text-4xl lg:text-5xl tracking-tight max-w-2xl mx-auto">Love this style? Let's create yours.</h2>
-        <Link to="/contact" className="inline-flex items-center gap-3 mt-10 bg-white text-[#14110d] px-10 py-5 text-xs uppercase tracking-[0.18em] hover:bg-[#b08d57] hover:text-white transition-colors">
+        <Link to="/contact" className="inline-flex items-center gap-3 mt-10 bg-white text-[#14110d] px-10 py-5 text-xs uppercase tracking-[0.18em] hover:bg-[#8e9499] hover:text-white transition-colors">
           Book a Consultation <ArrowUpRight size={16} />
         </Link>
       </section>

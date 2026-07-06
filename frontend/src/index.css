@@ -6,9 +6,9 @@
 :root {
   --ink: #14110d;
   --parchment: #f7f2e9;
-  --sand: #d8c4a0;
-  --brass: #b08d57;
-  --brass-dark: #8a6a3d;
+  --sand: #cfd3d8;
+  --brass: #8e9499;
+  --brass-dark: #6c7176;
   --stone: #6b6862;
 }
 
@@ -43,13 +43,13 @@ body {
     --secondary-foreground: 34 20% 6%;
     --muted: 40 15% 90%;
     --muted-foreground: 40 4% 40%;
-    --accent: 33 40% 51%;
+    --accent: 210 7% 58%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 55% 42%;
     --destructive-foreground: 0 0% 98%;
     --border: 38 30% 82%;
     --input: 38 30% 82%;
-    --ring: 33 40% 51%;
+    --ring: 210 7% 58%;
     --radius: 0px;
   }
 }
@@ -63,15 +63,18 @@ body {
 
 /* Cinematic embossed logotype over the dark hero */
 .logo-cinematic {
-  background: linear-gradient(175deg, #fbf7ef 0%, #efe3cd 40%, #d8c4a0 62%, #b08d57 100%);
+  background: linear-gradient(175deg, #ffffff 0%, #eef1f4 36%, #c2c8cf 62%, #8e9499 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
   filter:
-    drop-shadow(0 1px 0 rgba(255, 250, 240, 0.35))
+    drop-shadow(0 1px 0 rgba(255, 255, 255, 0.4))
     drop-shadow(0 2px 3px rgba(0, 0, 0, 0.55))
     drop-shadow(0 0 18px rgba(0, 0, 0, 0.35));
+}
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+  .logo-cinematic { color: #eef1f4; -webkit-text-fill-color: #eef1f4; }
 }
 /* Embossed logotype on light parchment pages */
 .logo-emboss {

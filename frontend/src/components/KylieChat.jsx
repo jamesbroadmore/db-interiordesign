@@ -62,7 +62,7 @@ export const KylieChat = () => {
       <button
         data-testid="kylie-bubble"
         onClick={() => setOpen(!open)}
-        className="fixed bottom-6 right-6 z-[60] h-16 w-16 rounded-full bg-[#14110d] text-white flex items-center justify-center shadow-2xl hover:bg-[#b08d57] transition-all duration-300 hover:scale-105"
+        className="fixed bottom-6 right-6 z-[60] h-16 w-16 rounded-full bg-[#14110d] text-white flex items-center justify-center shadow-2xl hover:bg-[#8e9499] transition-all duration-300 hover:scale-105"
         aria-label="Chat with Kylie"
       >
         {open ? <X size={24} /> : <MessageCircle size={24} />}
@@ -79,7 +79,7 @@ export const KylieChat = () => {
             className="fixed bottom-28 right-6 z-[60] w-[calc(100vw-3rem)] max-w-[400px] h-[560px] max-h-[75vh] flex flex-col backdrop-blur-2xl bg-[#f7f2e9]/95 border border-[#14110d]/10 shadow-2xl"
           >
             <div className="px-5 py-4 border-b border-[#14110d]/10 flex items-center gap-3 bg-[#14110d] text-white">
-              <div className="h-10 w-10 rounded-full bg-[#b08d57] flex items-center justify-center">
+              <div className="h-10 w-10 rounded-full bg-[#8e9499] flex items-center justify-center">
                 <Sparkles size={18} />
               </div>
               <div>
@@ -113,22 +113,22 @@ export const KylieChat = () => {
               <form data-testid="kylie-lead-form" onSubmit={submitLead} className="p-4 border-t border-[#14110d]/10 space-y-2 bg-white">
                 <input required placeholder="Your name" data-testid="kylie-lead-name" value={lead.name}
                   onChange={(e) => setLead({ ...lead, name: e.target.value })}
-                  className="w-full border border-[#14110d]/15 px-3 py-2 text-sm bg-[#f7f2e9] focus:outline-none focus:border-[#b08d57]" />
+                  className="w-full border border-[#14110d]/15 px-3 py-2 text-sm bg-[#f7f2e9] focus:outline-none focus:border-[#8e9499]" />
                 <input required type="email" placeholder="Email" data-testid="kylie-lead-email" value={lead.email}
                   onChange={(e) => setLead({ ...lead, email: e.target.value })}
-                  className="w-full border border-[#14110d]/15 px-3 py-2 text-sm bg-[#f7f2e9] focus:outline-none focus:border-[#b08d57]" />
+                  className="w-full border border-[#14110d]/15 px-3 py-2 text-sm bg-[#f7f2e9] focus:outline-none focus:border-[#8e9499]" />
                 <input placeholder="Project type (optional)" value={lead.project_type}
                   onChange={(e) => setLead({ ...lead, project_type: e.target.value })}
-                  className="w-full border border-[#14110d]/15 px-3 py-2 text-sm bg-[#f7f2e9] focus:outline-none focus:border-[#b08d57]" />
+                  className="w-full border border-[#14110d]/15 px-3 py-2 text-sm bg-[#f7f2e9] focus:outline-none focus:border-[#8e9499]" />
                 <div className="flex gap-2 pt-1">
-                  <button type="submit" data-testid="kylie-lead-submit" className="flex-1 bg-[#14110d] text-white py-2.5 text-xs uppercase tracking-[0.15em] hover:bg-[#b08d57] transition-colors">Send</button>
+                  <button type="submit" data-testid="kylie-lead-submit" className="flex-1 bg-[#14110d] text-white py-2.5 text-xs uppercase tracking-[0.15em] hover:bg-[#8e9499] transition-colors">Send</button>
                   <button type="button" onClick={() => setShowLead(false)} className="px-4 border border-[#14110d]/20 text-xs uppercase tracking-[0.15em]">Back</button>
                 </div>
               </form>
             ) : (
               <div className="border-t border-[#14110d]/10 bg-white">
                 <button data-testid="kylie-book-cta" onClick={() => setShowLead(true)}
-                  className="w-full py-2.5 text-[11px] uppercase tracking-[0.18em] text-[#b08d57] hover:bg-[#f7f2e9] transition-colors border-b border-[#14110d]/5">
+                  className="w-full py-2.5 text-[11px] uppercase tracking-[0.18em] text-[#8e9499] hover:bg-[#f7f2e9] transition-colors border-b border-[#14110d]/5">
                   Book a Consultation
                 </button>
                 <div className="p-3 flex items-center gap-2">
@@ -138,10 +138,10 @@ export const KylieChat = () => {
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && send()}
                     placeholder="Ask Kylie anything..."
-                    className="flex-1 border border-[#14110d]/15 px-3 py-2.5 text-sm bg-[#f7f2e9] focus:outline-none focus:border-[#b08d57]"
+                    className="flex-1 border border-[#14110d]/15 px-3 py-2.5 text-sm bg-[#f7f2e9] focus:outline-none focus:border-[#8e9499]"
                   />
                   <button data-testid="kylie-send" onClick={send} disabled={sending}
-                    className="h-10 w-10 flex items-center justify-center bg-[#14110d] text-white hover:bg-[#b08d57] transition-colors disabled:opacity-50">
+                    className="h-10 w-10 flex items-center justify-center bg-[#14110d] text-white hover:bg-[#8e9499] transition-colors disabled:opacity-50">
                     <Send size={16} />
                   </button>
                 </div>

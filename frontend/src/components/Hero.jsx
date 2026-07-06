@@ -43,7 +43,7 @@ export const Hero = () => {
       <div className="relative z-10 h-full flex flex-col justify-end pb-24 md:pb-28 px-6 md:px-12 lg:px-20">
         <motion.p
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.8 }}
-          className="text-xs uppercase tracking-[0.3em] text-[#d8c4a0] mb-6"
+          className="text-xs uppercase tracking-[0.3em] text-[#cfd3d8] mb-6"
         >
           Interior Design Studio · Australia
         </motion.p>
@@ -58,7 +58,7 @@ export const Hero = () => {
           className="mt-10 flex flex-col sm:flex-row gap-4"
         >
           <Link to="/portfolio" data-testid="hero-portfolio-btn"
-            className="group inline-flex items-center gap-3 bg-[#f7f2e9] text-[#14110d] px-8 py-4 text-xs uppercase tracking-[0.18em] hover:bg-[#b08d57] hover:text-white transition-colors">
+            className="group inline-flex items-center gap-3 bg-[#f7f2e9] text-[#14110d] px-8 py-4 text-xs uppercase tracking-[0.18em] hover:bg-[#8e9499] hover:text-white transition-colors">
             View Portfolio <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </Link>
           <Link to="/contact" data-testid="hero-book-btn"
@@ -76,7 +76,7 @@ export const Hero = () => {
               key={i}
               onClick={() => setIdx(i)}
               aria-label={`Show ${rooms[i].label}`}
-              className={`h-px transition-all duration-500 ${i === idx ? "w-10 bg-[#b08d57]" : "w-5 bg-white/40"}`}
+              className={`h-px transition-all duration-500 ${i === idx ? "w-10 bg-[#8e9499]" : "w-5 bg-white/40"}`}
             />
           ))}
         </div>

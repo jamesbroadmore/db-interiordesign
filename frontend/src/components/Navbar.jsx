@@ -51,14 +51,14 @@ export const Navbar = () => {
               data-testid={`nav-link-${l.label.toLowerCase()}`}
               className={`font-body text-sm uppercase tracking-[0.15em] transition-colors relative group ${
                 pathname === l.to
-                  ? "text-[#b08d57]"
+                  ? "text-[#8e9499]"
                   : overHero
-                  ? "text-white/90 hover:text-[#d8c4a0] drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]"
-                  : "text-[#14110d] hover:text-[#b08d57]"
+                  ? "text-white/90 hover:text-[#cfd3d8] drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]"
+                  : "text-[#14110d] hover:text-[#8e9499]"
               }`}
             >
               {l.label}
-              <span className="absolute -bottom-1 left-0 h-px bg-[#b08d57] transition-all duration-300 w-0 group-hover:w-full" />
+              <span className="absolute -bottom-1 left-0 h-px bg-[#8e9499] transition-all duration-300 w-0 group-hover:w-full" />
             </Link>
           ))}
           <Link
@@ -66,8 +66,8 @@ export const Navbar = () => {
             data-testid="nav-book-btn"
             className={`px-6 py-3 text-xs uppercase tracking-[0.18em] transition-colors ${
               overHero
-                ? "bg-[#b08d57] text-white hover:bg-[#8a6a3d]"
-                : "bg-[#14110d] text-white hover:bg-[#b08d57]"
+                ? "bg-[#8e9499] text-white hover:bg-[#6c7176]"
+                : "bg-[#14110d] text-white hover:bg-[#8e9499]"
             }`}
           >
             Book Consultation
