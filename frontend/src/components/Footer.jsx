@@ -15,15 +15,14 @@ export const Footer = () => (
         <ul className="space-y-3 font-body text-sm text-white/70">
           <li><Link to="/portfolio" className="hover:text-white transition-colors">Portfolio</Link></li>
           <li><Link to="/services" className="hover:text-white transition-colors">Services</Link></li>
-          <li><Link to="/about" className="hover:text-white transition-colors">The Studio</Link></li>
           <li><Link to="/contact" className="hover:text-white transition-colors">Book a Consultation</Link></li>
         </ul>
       </div>
       <div className="md:col-span-4">
         <div className="text-xs uppercase tracking-[0.2em] text-[#8e9499] mb-5">Studio</div>
         <ul className="space-y-3 font-body text-sm text-white/70">
-          <li className="flex items-center gap-3"><Mail size={16} /> hello@boyleinteriors.com</li>
-          <li className="flex items-center gap-3"><Phone size={16} /> +61 2 8000 4000</li>
+          <li className="flex items-center gap-3"><Mail size={16} /> enquiries@damienboyle.com.au</li>
+          <li className="flex items-center gap-3"><Phone size={16} /> +61 402 733 077</li>
           <li className="flex items-center gap-3"><Instagram size={16} /> @damienboyleinteriors</li>
         </ul>
       </div>

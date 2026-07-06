@@ -31,8 +31,8 @@ const Contact = () => {
           Tell us a little about your project and we'll be in touch to arrange your discovery consultation. Prefer to chat first? Kylie, our concierge, is here around the clock.
         </p>
         <div className="mt-12 space-y-5 font-body text-sm text-[#3a352d]">
-          <div className="flex items-center gap-4"><Mail size={18} className="text-[#8e9499]" /> hello@boyleinteriors.com</div>
-          <div className="flex items-center gap-4"><Phone size={18} className="text-[#8e9499]" /> +61 2 8000 4000</div>
+          <div className="flex items-center gap-4"><Mail size={18} className="text-[#8e9499]" /> enquiries@damienboyle.com.au</div>
+          <div className="flex items-center gap-4"><Phone size={18} className="text-[#8e9499]" /> +61 402 733 077</div>
           <div className="flex items-center gap-4"><MapPin size={18} className="text-[#8e9499]" /> Sydney · Melbourne · By appointment</div>
         </div>
       </div>

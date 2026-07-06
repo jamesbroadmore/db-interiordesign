@@ -16,7 +16,7 @@ export const KylieChat = () => {
     return s;
   });
   const [messages, setMessages] = useState([
-    { role: "assistant", content: "Hello, I'm Kylie — Damien's studio concierge. How can I help you today? I can share our services, process or pricing, or help you book a consultation." },
+    { role: "assistant", content: "Hello, I'm Kylie — Damien's studio concierge. How can I help you today? I can share our services and process, or help you book a consultation." },
   ]);
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);

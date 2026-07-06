@@ -33,9 +33,6 @@ const Home = () => {
             Damien Boyle Interiors is a design studio crafting considered residential and select commercial spaces across Australia.
             Every project begins with how you want to live, then builds outward through natural materials, honest craftsmanship and a warm, timeless palette.
           </p>
-          <Link to="/about" data-testid="story-more-link" className="inline-flex items-center gap-2 mt-8 text-sm uppercase tracking-[0.15em] text-[#14110d] border-b border-[#14110d] pb-1 hover:text-[#8e9499] hover:border-[#8e9499] transition-colors">
-            More about the studio <ArrowUpRight size={16} />
-          </Link>
         </div>
       </section>
 
