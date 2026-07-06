@@ -6,6 +6,7 @@ load_dotenv(ROOT_DIR / '.env')
 
 import os
 import uuid
+import asyncio
 import logging
 from datetime import datetime, timezone, timedelta
 from typing import List, Optional
@@ -19,8 +20,6 @@ from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 from pydantic import BaseModel, Field, EmailStr
 
-from emergentintegrations.llm.chat import LlmChat, UserMessage
-
 # ---------------------------------------------------------------- config
 mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
@@ -29,6 +28,9 @@ db = client[os.environ['DB_NAME']]
 JWT_SECRET = os.environ['JWT_SECRET']
 JWT_ALGORITHM = "HS256"
 EMERGENT_LLM_KEY = os.environ.get('EMERGENT_LLM_KEY')
+MISTRAL_API_KEY = os.environ.get('MISTRAL_API_KEY')
+MISTRAL_URL = "https://api.mistral.ai/v1/chat/completions"
+MISTRAL_MODEL = "mistral-large-latest"
 
 STORAGE_URL = "https://integrations.emergentagent.com/objstore/api/v1/storage"
 APP_NAME = "damien-boyle-interiors"
@@ -189,15 +191,16 @@ BRAND VOICE: refined, calm, gracious, and concise. Speak like a boutique studio 
 WHAT THE STUDIO OFFERS (ground all answers in this):
 - Services: Full-service Interior Design, Residential Styling, Renovation & Space Planning, Colour & Material Consultation, and Bespoke Furniture Curation.
 - Process: 1) Discovery consultation, 2) Concept & moodboards, 3) Design development & 3D visuals, 4) Procurement & project management, 5) Styling & final reveal.
-- Pricing overview: Initial consultation from $250. Room styling packages from $2,500. Full-home design projects are quoted bespoke, typically starting around $15,000 depending on scope. Always frame pricing as "starting from" and invite a consultation for an accurate quote.
 - Studio serves both residential and select commercial clients.
 
+PRICING: Do NOT quote prices, figures, ranges, or estimates. Every project is bespoke. If asked about cost, warmly explain that pricing depends on scope and invite the visitor to book a complimentary consultation so the studio can prepare a tailored proposal.
+
 YOUR GOALS:
-1. Answer questions about services, process, and pricing accurately.
+1. Answer questions about services and process accurately.
 2. Gently guide interested visitors toward booking a consultation.
 3. When a visitor shows intent to book or share contact details, ask for their name, email, and a short note about their project, then tell them Damien's studio will reach out. Do NOT invent confirmations — the booking form handles storage.
 
-If asked something outside interiors, politely steer back to how the studio can help. Never fabricate specific availability, dates, or guarantees."""
+If asked something outside interiors, politely steer back to how the studio can help. Never fabricate specific availability, dates, prices, or guarantees."""
 
 # ---------------------------------------------------------------- auth routes
 @api_router.post("/auth/login")
@@ -325,24 +328,29 @@ async def delete_booking(booking_id: str, admin: dict = Depends(get_current_admi
     return {"ok": True}
 
 # ---------------------------------------------------------------- kylie chat
+def _call_mistral(messages: List[dict]) -> str:
+    resp = requests.post(
+        MISTRAL_URL,
+        headers={"Authorization": f"Bearer {MISTRAL_API_KEY}", "Content-Type": "application/json"},
+        json={"model": MISTRAL_MODEL, "messages": messages, "temperature": 0.5, "max_tokens": 600},
+        timeout=45,
+    )
+    resp.raise_for_status()
+    return resp.json()["choices"][0]["message"]["content"].strip()
+
+
 @api_router.post("/chat")
 async def chat(payload: ChatRequest):
     history = await db.chat_messages.find(
         {"session_id": payload.session_id}, {"_id": 0}).sort("created_at", 1).to_list(20)
 
-    system_message = KYLIE_SYSTEM
-    if history:
-        convo = "\n".join(f"{'Visitor' if m['role'] == 'user' else 'Kylie'}: {m['content']}" for m in history)
-        system_message = f"{KYLIE_SYSTEM}\n\nCONVERSATION SO FAR:\n{convo}"
-
-    chat_client = LlmChat(
-        api_key=EMERGENT_LLM_KEY,
-        session_id=payload.session_id,
-        system_message=system_message,
-    ).with_model("gemini", "gemini-3-flash-preview")
+    messages = [{"role": "system", "content": KYLIE_SYSTEM}]
+    for m in history:
+        messages.append({"role": m["role"], "content": m["content"]})
+    messages.append({"role": "user", "content": payload.message})
 
     try:
-        reply = await chat_client.send_message(UserMessage(text=payload.message))
+        reply = await asyncio.to_thread(_call_mistral, messages)
     except Exception as e:
         logger.error(f"Kylie chat error: {e}")
         raise HTTPException(status_code=500, detail="Kylie is unavailable right now. Please try the contact form.")

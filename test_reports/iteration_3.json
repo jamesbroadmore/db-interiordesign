@@ -1,0 +1,38 @@
+{
+  "summary": "Verified Mistral-powered Kylie + full pricing removal. Backend 20/21 pytest passing (1 unrelated storage/upload 401). Kylie /api/chat returns real Mistral reply, contains NO $ / no price numbers when asked about renovation cost — instead invites consultation. Kylie UI bubble opens window, sends message, assistant reply bubble arrives (~5-10s), lead capture toast shows and booking persisted with source=kylie_chat. Bubble is fully above 'Made with Emergent' badge (bubble bottom y=804 <= badge top y=844, gap 40px). Services page has NO pricing anywhere, no data-testid pricing-* elements, offerings grid + Our Process + A Bespoke Approach section present with data-testid services-bespoke-cta 'Request a Proposal'. Home services-cta reads 'Explore Our Services' and links to /services; no pricing wording anywhere on home. Regression: home hero + featured projects load, portfolio filter (Residential) + project detail navigation work, contact booking form submits and shows booking-success, admin login redirects to /admin with tab-bookings & tab-projects visible, bookings display kylie_chat source correctly.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {"endpoint": "POST /api/upload", "issue": "Returns 500 due to storage init 401 (EMERGENT_LLM_KEY unauthorized against integrations.emergentagent.com objstore). Pre-existing infra issue, unrelated to this iteration's Mistral/pricing changes. All uploads (and any admin project cover-image upload flow) will fail until key is rotated."}
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/backend_test.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "Fix upload 401 (rotate/re-init EMERGENT_LLM_KEY for object storage) — otherwise admin cannot upload project images. Not blocking Kylie/pricing sign-off but flagged."
+  ],
+  "critical_code_review_comments": [
+    "KylieChat.jsx L19: initial assistant greeting still says 'I can share our services, process or pricing, or help you book a consultation.' — this contradicts the new no-pricing policy. Recommend replacing 'pricing' with 'approach' or removing the word entirely so the concierge never surfaces the term first.",
+    "Services.jsx has two CTAs (services-bespoke-cta 'Request a Proposal' and services-page-cta 'Book a Consultation') both pointing to /contact. Consider deduplicating or clearly differentiating (e.g. bespoke section pushes proposal, footer CTA pushes booking) to avoid CTA fatigue on the page.",
+    "server.py _call_mistral is a sync requests call wrapped in asyncio.to_thread — fine, but there is no rate-limit / retry handling. If Mistral 429s the whole /api/chat returns generic 500 to the user. Suggest catching HTTPError and returning a warmer branded fallback text (200 with a friendly reply) instead of raising 500.",
+    "server.py L30: EMERGENT_LLM_KEY is still imported and used ONLY for the object-storage init. Now that Kylie uses Mistral, either drop EMERGENT_LLM_KEY entirely or plan to migrate uploads off Emergent object storage (its 401 blocks uploads today).",
+    "Frontend has no <link rel='preconnect'> or /health probe on Kylie readiness, so first message latency (~4-8s cold Mistral) shows only the animated dots. Consider a subtle 'thinking...' hint after 2s for better UX."
+  ],
+  "updated_files": [
+    "/app/backend/tests/backend_test.py (replaced test_chat_graceful_error_or_reply with test_chat_returns_reply + test_chat_pricing_not_quoted asserting no $ / no big numbers / no pricing keywords in Kylie reply)"
+  ],
+  "success_rate": {"backend": "95% (20/21 — only unrelated /api/upload 401)", "frontend": "100% (all requested Kylie + Services + regression flows pass)"},
+  "test_credentials": "damien@boyleinteriors.com / Damien2026! — verified via /api/auth/login and UI redirect to /admin",
+  "seed_data_creation": "Created 3 TEST_ bookings during flow (contact form, kylie chat lead, and prior playwright run) — all cleaned up via DELETE /api/bookings after tests. Zero test data remaining.",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Kylie now runs on Mistral (mistral-large-latest) via MISTRAL_API_KEY in backend/.env — chat returns 200 with real reply (backend tests updated accordingly). No pricing anywhere: /services has bespoke-approach section (services-bespoke-cta), home services-cta now 'Explore Our Services'. Kylie bubble is bottom-24 (bottom offset 96px), window bottom-44 — sits above 'Made with Emergent' badge. Admin login redirects to /admin with tabs tab-bookings and tab-projects. localStorage key: dbi_token. Only known backend issue: /api/upload returns 500 because Emergent object-storage init returns 401 (unrelated to this iteration). +61 2 8000 4000 phone number in Footer/Contact is the only 3+ digit non-year sequence on public pages and is NOT a price.",
+  "rca of the issue": "N/A — this iteration verified two positive changes rather than a bug. Kylie backend change (Emergent LLM -> Mistral) confirmed by (a) /api/chat responding 200 with a natural Mistral reply, (b) prompt-driven price suppression verified with adversarial test (asked 'how much does a full home renovation cost?' — reply invited consultation, no $ or price numerals). Frontend pricing removal confirmed by /services rendering with 0 pricing-* testids, 0 occurrences of 'price'/'pricing'/'$', and offerings + process + bespoke sections intact."
+}

@@ -62,7 +62,7 @@ export const KylieChat = () => {
       <button
         data-testid="kylie-bubble"
         onClick={() => setOpen(!open)}
-        className="fixed bottom-6 right-6 z-[60] h-16 w-16 rounded-full bg-[#14110d] text-white flex items-center justify-center shadow-2xl hover:bg-[#8e9499] transition-all duration-300 hover:scale-105"
+        className="fixed bottom-24 right-6 z-[60] h-16 w-16 rounded-full bg-[#14110d] text-white flex items-center justify-center shadow-2xl hover:bg-[#8e9499] transition-all duration-300 hover:scale-105"
         aria-label="Chat with Kylie"
       >
         {open ? <X size={24} /> : <MessageCircle size={24} />}
@@ -76,7 +76,7 @@ export const KylieChat = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 30, scale: 0.96 }}
             transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed bottom-28 right-6 z-[60] w-[calc(100vw-3rem)] max-w-[400px] h-[560px] max-h-[75vh] flex flex-col backdrop-blur-2xl bg-[#f7f2e9]/95 border border-[#14110d]/10 shadow-2xl"
+            className="fixed bottom-44 right-6 z-[60] w-[calc(100vw-3rem)] max-w-[400px] h-[560px] max-h-[72vh] flex flex-col backdrop-blur-2xl bg-[#f7f2e9]/95 border border-[#14110d]/10 shadow-2xl"
           >
             <div className="px-5 py-4 border-b border-[#14110d]/10 flex items-center gap-3 bg-[#14110d] text-white">
               <div className="h-10 w-10 rounded-full bg-[#8e9499] flex items-center justify-center">

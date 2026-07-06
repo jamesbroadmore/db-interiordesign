@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowUpRight, Check } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 const offerings = [
   { t: "Full-Service Interior Design", d: "A complete, studio-managed journey from first concept to final styling — ideal for whole-home projects." },
@@ -16,12 +16,6 @@ const process = [
   ["03", "Design Development", "Detailed plans, 3D visuals and material selections brought together."],
   ["04", "Procurement & Management", "We source, order and manage trades so you don't have to."],
   ["05", "Styling & Reveal", "The final layer — styled, photographed and ready to be lived in."],
-];
-
-const pricing = [
-  { t: "Consultation", p: "from $250", note: "In-studio or on-site discovery session", items: ["90-minute session", "Tailored advice", "Clear next steps"] },
-  { t: "Room Styling", p: "from $2,500", note: "Per-room styling packages", items: ["Concept & moodboard", "Furniture & decor sourcing", "Styling day"], featured: true },
-  { t: "Full-Home Design", p: "bespoke, from $15,000", note: "Quoted to scope", items: ["End-to-end design", "3D visualisation", "Project management"] },
 ];
 
 const Services = () => (
@@ -54,27 +48,25 @@ const Services = () => (
       </div>
     </section>
 
-    {/* Pricing */}
+    {/* Bespoke approach (no pricing) */}
     <section className="px-6 md:px-12 lg:px-20 mt-28">
-      <p className="text-xs uppercase tracking-[0.2em] text-[#6b6862] mb-10">Pricing Overview</p>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {pricing.map((c) => (
-          <div key={c.t} data-testid={`pricing-${c.t.toLowerCase().replace(/\s/g, "-")}`}
-            className={`p-10 border ${c.featured ? "bg-[#14110d] text-white border-[#14110d]" : "bg-white border-[#14110d]/10"}`}>
-            <h3 className="font-display text-2xl">{c.t}</h3>
-            <div className={`font-display text-3xl mt-4 ${c.featured ? "text-[#8e9499]" : "text-[#14110d]"}`}>{c.p}</div>
-            <p className={`text-sm mt-2 ${c.featured ? "text-white/60" : "text-[#6b6862]"}`}>{c.note}</p>
-            <ul className="mt-6 space-y-3">
-              {c.items.map((it) => (
-                <li key={it} className={`flex items-center gap-3 text-sm ${c.featured ? "text-white/80" : "text-[#6b6862]"}`}>
-                  <Check size={16} className="text-[#8e9499]" /> {it}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+      <div className="bg-[#14110d] text-white p-12 md:p-16 grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
+        <div className="md:col-span-7">
+          <p className="text-xs uppercase tracking-[0.2em] text-[#8e9499] mb-5">A Bespoke Approach</p>
+          <h2 className="font-display font-light text-3xl sm:text-4xl lg:text-5xl tracking-tight leading-tight">
+            Every project is tailored to you.
+          </h2>
+          <p className="font-body text-base text-white/65 mt-6 leading-relaxed max-w-xl">
+            No two homes — or clients — are the same, so we scope each engagement individually. Share your vision with us and we'll prepare a considered proposal designed entirely around your space, timeline and lifestyle.
+          </p>
+        </div>
+        <div className="md:col-span-5 md:text-right">
+          <Link to="/contact" data-testid="services-bespoke-cta"
+            className="inline-flex items-center gap-3 bg-white text-[#14110d] px-10 py-5 text-xs uppercase tracking-[0.18em] hover:bg-[#8e9499] hover:text-white transition-colors">
+            Request a Proposal <ArrowUpRight size={16} />
+          </Link>
+        </div>
       </div>
-      <p className="text-sm text-[#6b6862] mt-6">All projects are quoted individually. Book a consultation for an accurate estimate.</p>
     </section>
 
     <section className="mt-28 bg-[#14110d] text-white px-6 md:px-12 lg:px-20 py-24 text-center">

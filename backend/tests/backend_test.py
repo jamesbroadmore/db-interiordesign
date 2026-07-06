@@ -209,17 +209,33 @@ class TestUpload:
 
 # ---------- chat ----------
 class TestChat:
-    def test_chat_graceful_error_or_reply(self, api_client):
-        """Expected: HTTP 500 with graceful error detail (LLM budget exhausted)
-        or valid reply. Must NOT crash / return 502 / return HTML."""
-        payload = {"session_id": f"test-{uuid.uuid4()}", "message": "Hi Kylie"}
-        r = api_client.post(f"{API}/chat", json=payload, timeout=45)
-        assert r.status_code in (200, 500), f"Unexpected status {r.status_code}: {r.text[:200]}"
+    def test_chat_returns_reply(self, api_client):
+        """Kylie should return an HTTP 200 with a non-empty 'reply' string via Mistral."""
+        payload = {"session_id": f"test-{uuid.uuid4()}", "message": "Hi Kylie, what services do you offer?"}
+        r = api_client.post(f"{API}/chat", json=payload, timeout=60)
+        assert r.status_code == 200, f"Unexpected status {r.status_code}: {r.text[:300]}"
         j = r.json()
-        if r.status_code == 500:
-            assert "Kylie is unavailable" in j.get("detail", "") or "unavailable" in j.get("detail", "").lower()
-        else:
-            assert "reply" in j and isinstance(j["reply"], str)
+        assert "reply" in j and isinstance(j["reply"], str) and len(j["reply"]) > 10
+
+    def test_chat_pricing_not_quoted(self, api_client):
+        """When asked about renovation cost, Kylie must NOT include dollar figures or price numbers."""
+        payload = {"session_id": f"test-{uuid.uuid4()}",
+                   "message": "What services do you offer and how much does a full home renovation cost?"}
+        r = api_client.post(f"{API}/chat", json=payload, timeout=60)
+        assert r.status_code == 200, f"Unexpected status {r.status_code}: {r.text[:300]}"
+        reply = r.json().get("reply", "")
+        assert reply, "Empty reply"
+        # No dollar signs or specific numeric price figures
+        assert "$" not in reply, f"Reply contains $ sign: {reply}"
+        import re
+        # forbid numbers like 250, 2500, 15000, 100k etc.
+        # allow ordinal single/double digits used in process steps ("1)", "2.") but forbid larger figures
+        big_numbers = re.findall(r"\b\d{3,}\b", reply)
+        assert not big_numbers, f"Reply contains price-like numbers {big_numbers}: {reply}"
+        # forbid explicit price/dollar words
+        lowered = reply.lower()
+        for w in ["usd", "aud ", "$aud", "dollars", "per hour", "flat fee"]:
+            assert w not in lowered, f"Reply contains pricing word '{w}': {reply}"
 
     def test_chat_lead_capture(self, api_client, auth_headers):
         sid = f"test-{uuid.uuid4()}"

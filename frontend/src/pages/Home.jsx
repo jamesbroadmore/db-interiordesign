@@ -93,7 +93,7 @@ const Home = () => {
           ))}
         </div>
         <Link to="/services" data-testid="services-cta" className="inline-flex items-center gap-2 mt-14 border border-white/40 px-8 py-4 text-xs uppercase tracking-[0.18em] hover:bg-white hover:text-[#14110d] transition-colors">
-          Explore Services & Pricing <ArrowUpRight size={16} />
+          Explore Our Services <ArrowUpRight size={16} />
         </Link>
       </section>
 
