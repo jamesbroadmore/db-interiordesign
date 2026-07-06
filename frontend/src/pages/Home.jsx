@@ -30,7 +30,7 @@ const Home = () => {
             We believe a home should feel as warm as it looks — layered, personal, and quietly luxurious.
           </h2>
           <p className="font-body text-base leading-relaxed text-[#6b6862] mt-8 max-w-2xl">
-            Damien Boyle Interiors is a design studio crafting considered residential and select commercial spaces across Australia.
+            Damien Boyle Interiors is a Perth-based design studio crafting considered residential and select commercial spaces across Western Australia.
             Every project begins with how you want to live, then builds outward through natural materials, honest craftsmanship and a warm, timeless palette.
           </p>
         </div>

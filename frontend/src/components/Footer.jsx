@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Instagram, Mail, Phone } from "lucide-react";
+import { Lock, Mail, Phone } from "lucide-react";
 
 export const Footer = () => (
   <footer data-testid="main-footer" className="bg-[#14110d] text-[#f7f2e9]">
@@ -23,13 +23,12 @@ export const Footer = () => (
         <ul className="space-y-3 font-body text-sm text-white/70">
           <li className="flex items-center gap-3"><Mail size={16} /> enquiries@damienboyle.com.au</li>
           <li className="flex items-center gap-3"><Phone size={16} /> +61 402 733 077</li>
-          <li className="flex items-center gap-3"><Instagram size={16} /> @damienboyleinteriors</li>
+          <li><Link to="/admin/login" data-testid="footer-admin-link" className="flex items-center gap-3 hover:text-white transition-colors"><Lock size={16} /> Studio Login</Link></li>
         </ul>
       </div>
     </div>
-    <div className="px-6 md:px-12 lg:px-20 py-6 border-t border-white/10 flex flex-col md:flex-row justify-between gap-3 text-xs text-white/40 font-body">
+    <div className="px-6 md:px-12 lg:px-20 py-6 border-t border-white/10 text-xs text-white/40 font-body">
       <span>© {new Date().getFullYear()} Damien Boyle Interiors. All rights reserved.</span>
-      <Link to="/admin/login" data-testid="footer-admin-link" className="hover:text-white/70 transition-colors">Studio Login</Link>
     </div>
   </footer>
 );

@@ -6,6 +6,13 @@ import { toast } from "sonner";
 
 const uid = () => "kylie-" + Math.random().toString(36).slice(2, 11);
 
+const QUICK_PROMPTS = [
+  "What services do you offer?",
+  "Tell me about your design process",
+  "Where are you based?",
+  "How do I book a consultation?",
+];
+
 export const KylieChat = () => {
   const [open, setOpen] = useState(false);
   const [sessionId] = useState(() => {
@@ -16,7 +23,7 @@ export const KylieChat = () => {
     return s;
   });
   const [messages, setMessages] = useState([
-    { role: "assistant", content: "Hello, I'm Kylie — Damien's studio concierge. How can I help you today? I can share our services and process, or help you book a consultation." },
+    { role: "assistant", content: "Hello, I'm Kylie — Damien's studio assistant. How can I help you today? Tap an option below or ask me anything." },
   ]);
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
@@ -28,14 +35,14 @@ export const KylieChat = () => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
   }, [messages, open, sending]);
 
-  const send = async () => {
-    const text = input.trim();
-    if (!text || sending) return;
+  const sendMessage = async (text) => {
+    const msg = (text || "").trim();
+    if (!msg || sending) return;
     setInput("");
-    setMessages((m) => [...m, { role: "user", content: text }]);
+    setMessages((m) => [...m, { role: "user", content: msg }]);
     setSending(true);
     try {
-      const { data } = await api.post("/chat", { session_id: sessionId, message: text });
+      const { data } = await api.post("/chat", { session_id: sessionId, message: msg });
       setMessages((m) => [...m, { role: "assistant", content: data.reply }]);
     } catch (e) {
       setMessages((m) => [...m, { role: "assistant", content: "I'm having a little trouble right now. Please try the contact form and the studio will reach out." }]);
@@ -43,6 +50,8 @@ export const KylieChat = () => {
       setSending(false);
     }
   };
+
+  const send = () => sendMessage(input);
 
   const submitLead = async (e) => {
     e.preventDefault();
@@ -84,7 +93,7 @@ export const KylieChat = () => {
               </div>
               <div>
                 <div className="font-display text-lg leading-none">Kylie</div>
-                <div className="text-[10px] uppercase tracking-[0.18em] text-white/60 mt-1">Studio Concierge</div>
+                <div className="text-[10px] uppercase tracking-[0.18em] text-white/60 mt-1">Studio Assistant</div>
               </div>
             </div>
 
@@ -105,6 +114,20 @@ export const KylieChat = () => {
                       <span key={d} className="h-1.5 w-1.5 rounded-full bg-[#6b6862] animate-bounce" style={{ animationDelay: `${d * 0.15}s` }} />
                     ))}
                   </div>
+                </div>
+              )}
+              {!sending && messages.filter((m) => m.role === "user").length === 0 && (
+                <div data-testid="kylie-quick-prompts" className="flex flex-col items-start gap-2 pt-1">
+                  {QUICK_PROMPTS.map((q) => (
+                    <button
+                      key={q}
+                      data-testid={`kylie-quick-${q.toLowerCase().replace(/[^a-z]+/g, "-").replace(/^-|-$/g, "")}`}
+                      onClick={() => sendMessage(q)}
+                      className="text-left text-xs font-body px-3.5 py-2 border border-[#8e9499]/50 text-[#14110d] bg-white/60 hover:bg-[#14110d] hover:text-white hover:border-[#14110d] transition-colors"
+                    >
+                      {q}
+                    </button>
+                  ))}
                 </div>
               )}
             </div>

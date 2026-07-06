@@ -45,7 +45,7 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.8 }}
           className="text-xs uppercase tracking-[0.3em] text-[#cfd3d8] mb-6"
         >
-          Interior Design Studio · Australia
+          Interior Design Studio · Perth, Australia
         </motion.p>
         <motion.h1
           initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45, duration: 0.9 }}
