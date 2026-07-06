@@ -1,0 +1,89 @@
+{
+  "theme": "Light",
+  "archetype": "Archetype 5: Luxury (Editorial Light) - Warm Linen & Charcoal",
+  "color_palette": {
+    "background": "#F9F8F6",
+    "surface": "#FFFFFF",
+    "primary": "#1A1A1A",
+    "secondary": "#8C7A6B",
+    "accent": "#D1C8C1",
+    "text_main": "#1A1A1A",
+    "text_muted": "#555555",
+    "border": "#E5E5E5",
+    "error": "#9A3E3E"
+  },
+  "typography": {
+    "heading_font": "Cormorant Garamond",
+    "body_font": "Outfit",
+    "hierarchy": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl font-light tracking-tighter leading-none",
+      "h2": "text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight leading-none",
+      "h3": "text-xl sm:text-2xl lg:text-3xl font-normal",
+      "h4": "text-lg sm:text-xl font-normal",
+      "body": "text-base leading-relaxed tracking-wide",
+      "overline": "text-xs uppercase tracking-[0.2em] font-semibold text-[#8C7A6B]"
+    }
+  },
+  "layout_and_spacing": {
+    "container_padding": "px-6 md:px-12 lg:px-24",
+    "section_spacing": "py-24 md:py-32",
+    "grid_system": "Asymmetrical Tetris Grid (grid-cols-1 md:grid-cols-12 gap-8 md:gap-12) for galleries. Avoid perfect symmetry to create tension.",
+    "borders": "1px solid #E5E5E5 for structure and separation",
+    "radius": "rounded-none (Sharp corners for architectural/editorial feel)"
+  },
+  "components": {
+    "buttons": "Square/sharp corners, high contrast. Primary: bg-[#1A1A1A] text-white hover:bg-[#333333]. Secondary: bg-transparent border border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#F9F8F6]. Padding: px-8 py-4.",
+    "cards": "Flat, cardless appearance. Images should bleed to edges of their containers. Text sitting below or overlapping, never contained in a generic box.",
+    "navigation": "Sticky, Glassmorphism Crystal Variant (backdrop-blur-xl bg-[#F9F8F6]/80, border-b border-[#1A1A1A]/10). Logo left, links right. Generous spacing.",
+    "kylie_ai_assistant": "Floating bottom right. Glassmorphic chat window. Avatar: elegant abstract shape. Sleek, non-intrusive.",
+    "admin_dashboard": "Archetype 4 (Swiss/High Contrast) for admin side. Dense grids (grid-cols-1 md:grid-cols-4 gap-6). Shadcn UI standard tables, forms. Cardless UI, 1px borders."
+  },
+  "motion_and_interactions": {
+    "hover_states": "Images: subtle scale up (scale-105) over 0.6s ease-in-out. Links: 1px underline expansion.",
+    "page_load": "Fade in, slight upward translate (staggered for grid items).",
+    "scroll": "Smooth scrolling (Lenis recommended), subtle parallax on large hero/gallery images."
+  },
+  "image_urls": [
+    {
+      "category": "hero_background",
+      "url": "https://images.pexels.com/photos/29012619/pexels-photo-29012619.jpeg",
+      "description": "Minimalist living room with soft white sofas and large curtains, for the homepage hero section."
+    },
+    {
+      "category": "featured_project_1",
+      "url": "https://images.pexels.com/photos/9976125/pexels-photo-9976125.jpeg",
+      "description": "Contemporary living room featuring a sleek marble accent wall."
+    },
+    {
+      "category": "featured_project_2",
+      "url": "https://images.pexels.com/photos/34688219/pexels-photo-34688219.jpeg",
+      "description": "Spacious modern living room with elegant sofas and stylish decor."
+    },
+    {
+      "category": "about_damien_portrait",
+      "url": "https://images.unsplash.com/photo-1625580353616-c477154bbcb4?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjd8MHwxfHNlYXJjaHwyfHxwcm9mZXNzaW9uYWwlMjBtYWxlJTIwaW50ZXJpb3IlMjBkZXNpZ25lciUyMHBvcnRyYWl0fGVufDB8fHx8MTc4MjU3MDYwMXww&ixlib=rb-4.1.0&q=85",
+      "description": "Professional male interior designer standing near a counter."
+    },
+    {
+      "category": "kylie_ai_avatar",
+      "url": "https://images.pexels.com/photos/7307561/pexels-photo-7307561.jpeg",
+      "description": "Minimalist abstract composition featuring geometric shapes."
+    }
+  ],
+  "accessibility_and_testing": {
+    "contrast": "Ensure minimum 4.5:1 contrast for all text. Overlays on images must use gradients or min bg-black/30 for readability.",
+    "testing_attributes": "All interactive and key informational elements MUST include `data-testid` (e.g., data-testid='booking-submit-button', data-testid='gallery-filter-modern')."
+  },
+  "instructions_to_main_agent": [
+    "Read this design_guidelines.json file entirely.",
+    "Use Tailwind CSS and pure HTML structures (div, section, grid) for the marketing pages to achieve the asymmetrical/editorial layouts.",
+    "Use Shadcn UI components for complex interactions (Forms, Modals) but heavily customize them (remove rounded corners, apply custom borders) to match the sharp, editorial brand.",
+    "The admin dashboard should use standard Shadcn UI components natively, focusing on data density and clarity.",
+    "Install and use '@phosphor-icons/react' for elegant, thin-line icons that match the architectural feel.",
+    "Do NOT use generic sans-serif (Inter, Roboto) for headings; explicitly use 'Cormorant Garamond'. Use 'Outfit' for body text.",
+    "Implement the Kylie AI assistant using the Gemini 3 Flash API, presented as a floating glassmorphic widget.",
+    "Do NOT use placeholder text or placeholder images. Use the EXACT image URLs provided in this file.",
+    "Ensure the hero image has an adequate overlay gradient to keep the display text accessible.",
+    "Apply generous padding (p-12, p-24) to establish a premium, 'gallery-like' breathing room."
+  ]
+}
