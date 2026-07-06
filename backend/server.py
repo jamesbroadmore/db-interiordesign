@@ -283,7 +283,6 @@ async def upload_image(file: UploadFile = File(...), admin: dict = Depends(get_c
         "size": result.get("size"), "is_deleted": False,
         "created_at": datetime.now(timezone.utc).isoformat(),
     })
-    backend_url = os.environ.get("REACT_APP_BACKEND_URL", "")
     return {"url": f"/api/files/{stored}", "path": stored}
 
 
