@@ -23,6 +23,8 @@ export const Navbar = () => {
 
   useEffect(() => setOpen(false), [pathname]);
 
+  const overHero = pathname === "/" && !scrolled;
+
   return (
     <header
       data-testid="main-navbar"
@@ -31,7 +33,13 @@ export const Navbar = () => {
       }`}
     >
       <div className="px-6 md:px-12 lg:px-20 flex items-center justify-between h-20">
-        <Link to="/" data-testid="nav-logo" className="font-logo text-2xl md:text-3xl tracking-wide text-[#14110d] leading-none">
+        <Link
+          to="/"
+          data-testid="nav-logo"
+          className={`font-logo text-3xl md:text-[2.6rem] leading-none transition-all duration-500 ${
+            overHero ? "logo-cinematic" : "logo-emboss"
+          }`}
+        >
           Damien Boyle
         </Link>
 
@@ -42,7 +50,11 @@ export const Navbar = () => {
               to={l.to}
               data-testid={`nav-link-${l.label.toLowerCase()}`}
               className={`font-body text-sm uppercase tracking-[0.15em] transition-colors relative group ${
-                pathname === l.to ? "text-[#b08d57]" : "text-[#14110d] hover:text-[#b08d57]"
+                pathname === l.to
+                  ? "text-[#b08d57]"
+                  : overHero
+                  ? "text-white/90 hover:text-[#d8c4a0] drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]"
+                  : "text-[#14110d] hover:text-[#b08d57]"
               }`}
             >
               {l.label}
@@ -52,13 +64,21 @@ export const Navbar = () => {
           <Link
             to="/contact"
             data-testid="nav-book-btn"
-            className="bg-[#14110d] text-white px-6 py-3 text-xs uppercase tracking-[0.18em] hover:bg-[#b08d57] transition-colors"
+            className={`px-6 py-3 text-xs uppercase tracking-[0.18em] transition-colors ${
+              overHero
+                ? "bg-[#b08d57] text-white hover:bg-[#8a6a3d]"
+                : "bg-[#14110d] text-white hover:bg-[#b08d57]"
+            }`}
           >
             Book Consultation
           </Link>
         </nav>
 
-        <button data-testid="nav-mobile-toggle" className="md:hidden text-[#14110d]" onClick={() => setOpen(!open)}>
+        <button
+          data-testid="nav-mobile-toggle"
+          className={`md:hidden transition-colors ${overHero ? "text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]" : "text-[#14110d]"}`}
+          onClick={() => setOpen(!open)}
+        >
           {open ? <X size={26} /> : <Menu size={26} />}
         </button>
       </div>
