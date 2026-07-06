@@ -13,6 +13,7 @@ from typing import List, Optional
 
 import jwt
 import bcrypt
+import certifi
 import requests
 from fastapi import FastAPI, APIRouter, HTTPException, Depends, UploadFile, File, Request, Response
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
@@ -22,7 +23,7 @@ from pydantic import BaseModel, Field, EmailStr
 
 # ---------------------------------------------------------------- config
 mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
+client = AsyncIOMotorClient(mongo_url, tlsCAFile=certifi.where())
 db = client[os.environ['DB_NAME']]
 
 JWT_SECRET = os.environ['JWT_SECRET']

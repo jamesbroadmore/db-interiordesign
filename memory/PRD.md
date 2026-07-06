@@ -39,3 +39,10 @@ Premium interior design portfolio + business website with AI assistant "Kylie", 
 
 ## Next Tasks
 - Confirm Kylie works after key top-up; optionally add email notifications.
+
+## Deployment Configuration (2026-07-06)
+- **Frontend → Vercel**: `frontend/vercel.json` (SPA rewrites). Root dir `frontend`, set `REACT_APP_BACKEND_URL` to the backend URL.
+- **Backend → Railway**: `backend/Procfile` + `backend/railway.json` (uvicorn start, `/api/` healthcheck), `.python-version` 3.11, `.env.example`. Root dir `backend`.
+- **Database → MongoDB Atlas (free M0)**: connected and verified live from preview (`damien_boyle_interiors` DB seeded: admin + 6 projects). Added `dnspython` + `certifi` to requirements; Mongo client uses `tlsCAFile=certifi.where()` for reliable SRV/TLS. Removed unused `emergentintegrations` dep (would break external build).
+- Preview `.env` MONGO_URL now points at the user's Atlas cluster.
+- SECURITY: real `.env` must stay out of git; set secrets (MONGO_URL, JWT_SECRET, MISTRAL_API_KEY, EMERGENT_LLM_KEY, ADMIN_*) as Railway variables. Recommend rotating the Atlas password post-launch.
